@@ -25,6 +25,15 @@ interface GSGConfig {
 }
 
 export default function GridStackGallery(
+  /* @todo #1 extract and export default config
+    and/or make interface properties optional
+    to create an instance of GSG required ALL
+    properties so it would be better to either:
+      - make them optional
+      - add the defaults (with user overrides later in processConfig)
+      - and/or allow the user to handle overrides themselves by 
+        importing the default config
+  */
   config: GSGConfig = {
     selector: GSG_DEFAULT_RENDER_SELECTOR,
     images: [],
@@ -107,6 +116,12 @@ function setupGridEvents(grid: GridStack): GridStack {
   PubSub.subscribe(Topics.SWAP_ITEM, function (_topic, data: SwapTopic) {
     const batcher = grid.batchUpdate();
     for (const gridItem of grid.getGridItems()) {
+      /* @todo #1 multiple grids should be handled independently
+        currently we are not checking which grid instance
+        we should be handling the the swap event on
+        the instance can be taken from data.el.gridstackNode.grid
+        and matched against the one in the closure
+      */
       if (gridItem === data.el) {
         batcher.update(gridItem, { w: 8, h: 8 });
 
@@ -140,6 +155,11 @@ function setupGalleryItemClickListeners(gridItem: GridItemHTMLElement) {
   });
 }
 
+/* @todo #1 prevent initialising default
+  when the package is imported as a module
+  the default, browser intended code below
+  should not be executed.
+*/
 if (typeof window !== undefined) {
   GridStackGallery();
 }
