@@ -1,6 +1,5 @@
 {
   "name": "gridstack-gallery",
-  "private": true,
   "version": "0.0.1",
   "type": "module",
   "types": "index.d.ts",
