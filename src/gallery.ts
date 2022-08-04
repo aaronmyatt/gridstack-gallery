@@ -1,3 +1,4 @@
+import './style.css';
 import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.min.css';
 import 'gridstack/dist/h5/gridstack-dd-native';
@@ -23,7 +24,7 @@ interface GSGConfig {
   gridItemTemplate: (src?: string) => string;
 }
 
-export function GridStackGallery(
+export default function GridStackGallery(
   config: GSGConfig = {
     selector: GSG_DEFAULT_RENDER_SELECTOR,
     images: [],
@@ -137,4 +138,8 @@ function setupGalleryItemClickListeners(gridItem: GridItemHTMLElement) {
       } as SwapTopic);
     });
   });
+}
+
+if (typeof window !== undefined) {
+  GridStackGallery();
 }
