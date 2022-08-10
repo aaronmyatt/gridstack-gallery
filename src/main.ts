@@ -1,5 +1,6 @@
-import './gallery';
-// import GridStackGallery from './gallery';
+import GridStackGallery from './gallery';
+
+GridStackGallery();
 
 // GridStackGallery({
 //   selector: '.gsg1',

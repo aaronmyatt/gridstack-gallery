@@ -1,7 +1,6 @@
 import './style.css';
 import { GridStack } from 'gridstack';
 import 'gridstack/dist/gridstack.min.css';
-import 'gridstack/dist/h5/gridstack-dd-native';
 import { GridItemHTMLElement, GridStackNode } from 'gridstack/dist/types';
 
 import * as PubSub from 'pubsub-js';
@@ -155,11 +154,13 @@ function setupGalleryItemClickListeners(gridItem: GridItemHTMLElement) {
   });
 }
 
-/* @todo #1 prevent initialising default
-  when the package is imported as a module
-  the default, browser intended code below
-  should not be executed.
-*/
+declare global {
+  interface Window {
+    GridStackGallery: object;
+  }
+}
+
+// attach a reference to the window object (if its present) for good measure!
 if (typeof window !== undefined) {
-  GridStackGallery();
+  window.GridStackGallery = GridStackGallery;
 }

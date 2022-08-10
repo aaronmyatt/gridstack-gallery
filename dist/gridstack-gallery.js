@@ -1983,10 +1983,13 @@ function Ct(d) {
   return d;
 }
 function Nt(d) {
-  return et.GridStack.init({
-    disableOneColumnMode: !0,
-    margin: "1px"
-  }, d.selector);
+  return et.GridStack.init(
+    {
+      disableOneColumnMode: !0,
+      margin: "1px"
+    },
+    d.selector
+  );
 }
 function Ht(d, t) {
   const e = d.batchUpdate();
@@ -2019,7 +2022,7 @@ function zt(d) {
     });
   });
 }
-typeof window !== void 0 && Ot();
+typeof window !== void 0 && (window.GridStackGallery = Ot);
 export {
   Ot as default
 };
